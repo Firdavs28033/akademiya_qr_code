@@ -8,8 +8,6 @@ from django.views.decorators.csrf import csrf_protect
 from django.http import HttpResponse
 from django.conf import settings
 import os
-# from hitcount.views import HitCountDetailView
-
 
 class ItemsListView(ListView):
     model = Items
@@ -41,12 +39,6 @@ class ItemsCreateView(LoginRequiredMixin, CreateView):
     fields = ['name', 'text', 'created_time', 'brand', 'audio','video', 'image', 'teacher']
 
 
-def fakultetlar(request):
-    fakultet = Fakultet.objects.all()
-    context = {
-        "fakultet": fakultet,
-    }
-    return render(request, 'fakultetlar.html', context)
 @csrf_protect
 def items_detail(request, pk):
     item = get_object_or_404(Items, pk=pk)
